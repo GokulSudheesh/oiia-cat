@@ -4,6 +4,7 @@ import {
   DECELERATE_EVENT_NAME,
 } from "../../utils/constants";
 import config from "../../config";
+import styles from "./style.module.css";
 
 type Props = {
   showHint?: boolean;
@@ -38,13 +39,13 @@ const OIIACat = ({ showHint, className, onHoldStart, onHoldEnd }: Props) => {
       >
         {!isSpinning ? (
           <img
-            className="w-full h-auto"
+            className="w-full h-auto pointer-events-none select-none"
             src={`${config.basePath}/oiia-cat.png`}
             alt="OIIACat"
           />
         ) : (
           <img
-            className="w-full h-auto"
+            className="w-full h-auto pointer-events-none  select-none"
             src={`${config.basePath}/oiia-cat-spin.gif`}
             alt="OIIACat"
           />
