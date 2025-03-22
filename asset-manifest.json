@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/oiia-cat/static/css/main.c19c7922.css",
-    "main.js": "/oiia-cat/static/js/main.59a1be48.js",
+    "main.js": "/oiia-cat/static/js/main.a0c4244c.js",
     "static/js/453.7f10163c.chunk.js": "/oiia-cat/static/js/453.7f10163c.chunk.js",
     "index.html": "/oiia-cat/index.html",
     "main.c19c7922.css.map": "/oiia-cat/static/css/main.c19c7922.css.map",
-    "main.59a1be48.js.map": "/oiia-cat/static/js/main.59a1be48.js.map",
+    "main.a0c4244c.js.map": "/oiia-cat/static/js/main.a0c4244c.js.map",
     "453.7f10163c.chunk.js.map": "/oiia-cat/static/js/453.7f10163c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c19c7922.css",
-    "static/js/main.59a1be48.js"
+    "static/js/main.a0c4244c.js"
   ]
 }
