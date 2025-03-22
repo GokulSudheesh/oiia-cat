@@ -4,20 +4,28 @@ import {
   DECELERATE_EVENT_NAME,
 } from "../../utils/constants";
 import config from "../../config";
-import styles from "./style.module.css";
 
 type Props = {
-  showHint?: boolean;
+  isPlaying?: boolean;
   className?: string;
+  onClickPlay?: () => void;
   onHoldStart?: () => void;
   onHoldEnd?: () => void;
 };
 
-const OIIACat = ({ showHint, className, onHoldStart, onHoldEnd }: Props) => {
+const OIIACat = ({
+  isPlaying,
+  className,
+  onClickPlay,
+  onHoldStart,
+  onHoldEnd,
+}: Props) => {
   const [isSpinning, setIsSpinning] = useState(false);
+  const [showhint, setshowhint] = useState(true);
 
   const spinTheOIACat = () => {
     setIsSpinning(true);
+    setshowhint(false);
     window.dispatchEvent(new Event(ACCELERATE_EVENT_NAME));
     onHoldStart?.();
   };
@@ -29,7 +37,9 @@ const OIIACat = ({ showHint, className, onHoldStart, onHoldEnd }: Props) => {
   };
 
   return (
-    <div className={`flex w-[25%] min-w-44 max-w-[500px] ${className}`}>
+    <div
+      className={`flex flex-col w-[25%] min-w-44 max-w-[500px] items-center gap-3 ${className}`}
+    >
       <div
         className="flex cursor-pointer relative"
         onTouchStart={spinTheOIACat}
@@ -50,10 +60,20 @@ const OIIACat = ({ showHint, className, onHoldStart, onHoldEnd }: Props) => {
             alt="OIIACat"
           />
         )}
-        {showHint && (
-          <p className="absolute text-3xl text-slate-300">Hold meee</p>
+        {showhint && (
+          <p className="absolute top-[-24px] text-3xl text-slate-300">
+            Hold meee
+          </p>
         )}
       </div>
+      {!isPlaying && (
+        <button
+          onClick={onClickPlay}
+          className="border border-[#bebebe] border-dotted text-slate-300 text-lg p-2 w-fit rounded-lg cursor-pointer flex items-center justify-center"
+        >
+          ▶
+        </button>
+      )}
     </div>
   );
 };

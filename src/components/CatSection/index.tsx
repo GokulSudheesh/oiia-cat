@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import OIIACat from "../OIIACat";
 import songsData from "../../data/oiasongs.json";
 import NowPalying from "../NowPalying";
@@ -11,21 +11,21 @@ const getRandomIndex = (end: number) => Math.floor(Math.random() * end);
 const RAND_INDEX = getRandomIndex(songsData.length);
 
 const CatSection = (props: Props) => {
-  const hasPlayedRef = useRef<boolean>(false);
+  const isPlayingRef = useRef<boolean>(false);
   const [randIndex, setRandIndex] = useState(RAND_INDEX);
-  const [hasPlayed, setHasPlayed] = useState(false);
+  const [isPlaying, setIsPaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleTouchStart = () => {
-    if (hasPlayedRef.current) return;
+  const handlePlaySong = () => {
+    if (isPlayingRef.current) return;
     audioRef?.current?.play();
-    hasPlayedRef.current = true;
-    setHasPlayed(true);
+    isPlayingRef.current = true;
+    setIsPaying(true);
   };
 
   const handleAudioEnd = () => {
-    hasPlayedRef.current = false;
-    setHasPlayed(false);
+    isPlayingRef.current = false;
+    setIsPaying(false);
     setRandIndex(getRandomIndex(songsData.length));
   };
 
@@ -35,8 +35,8 @@ const CatSection = (props: Props) => {
     <div className="fixed w-full h-full inset-0 flex flex-col">
       <OIIACat
         className="m-auto"
-        showHint={!hasPlayed}
-        onHoldStart={handleTouchStart}
+        isPlaying={isPlaying}
+        onClickPlay={handlePlaySong}
       />
       <audio
         ref={audioRef}
@@ -44,7 +44,7 @@ const CatSection = (props: Props) => {
         onEnded={handleAudioEnd}
         loop={false}
       />
-      {hasPlayed && (
+      {isPlaying && (
         <NowPalying
           name={currentSong.name}
           youtubeLink={currentSong.ytSource}
