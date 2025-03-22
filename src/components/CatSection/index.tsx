@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import OIIACat from "../OIIACat";
 import songsData from "../../data/oiasongs.json";
 import NowPalying from "../NowPalying";
+import config from "../../config";
 
 type Props = {};
 
@@ -39,7 +40,7 @@ const CatSection = (props: Props) => {
       />
       <audio
         ref={audioRef}
-        src={currentSong.source}
+        src={`${config.basePath}${currentSong.source}`}
         onEnded={handleAudioEnd}
         loop={false}
       />

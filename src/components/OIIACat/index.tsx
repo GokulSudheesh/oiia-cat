@@ -3,6 +3,7 @@ import {
   ACCELERATE_EVENT_NAME,
   DECELERATE_EVENT_NAME,
 } from "../../utils/constants";
+import config from "../../config";
 
 type Props = {
   showHint?: boolean;
@@ -36,11 +37,15 @@ const OIIACat = ({ showHint, className, onHoldStart, onHoldEnd }: Props) => {
         onMouseUp={stopSpinningTheOIACat}
       >
         {!isSpinning ? (
-          <img className="w-full h-auto" src="/oiia-cat.png" alt="OIIACat" />
+          <img
+            className="w-full h-auto"
+            src={`${config.basePath}/oiia-cat.png`}
+            alt="OIIACat"
+          />
         ) : (
           <img
             className="w-full h-auto"
-            src="/oiia-cat-spin.gif"
+            src={`${config.basePath}/oiia-cat-spin.gif`}
             alt="OIIACat"
           />
         )}
